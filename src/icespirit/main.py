@@ -20,12 +20,38 @@ def readfile():
     print("The file you have entered is not found.")
 
 def countlines():
-  cnt=0
+  try:
+    lines=0
+    x=input("file:> ")
+    fp=open(f"{x}", "r")
+
+    for xx in fp:
+      print(xx)
+      lines+=1
+
+    print(f"Your file has {lines} line(s)")
+
+  except FileNotFoundError:
+    print("The file you have entered is not found.")
+
+def detectlanguage():
+  languages = {
+    ".txt":"text file",
+    ".c":"c",
+    ".cpp":"c++",
+    ".css":"css",
+    ".go":"golang",
+    ".html":"html",
+    ".java":"java",
+    ".js":"javascript",
+    ".kt":"kotlin",
+    ".py":"python",
+    ".rs":"rust",
+    ".vala":"vala",
+  }
   x=input("file:> ")
-  fp=open(f"{x}", "r")
-
-  for xx in fp:
-    print(xx)
-    cnt+=1
-
-  print(f"Your file has {cnt} line(s)")
+  xx=x.split(".")
+  try:
+    print(languages["." + xx[1]])
+  except:
+    print("It seems like the language is not yet supported.")
