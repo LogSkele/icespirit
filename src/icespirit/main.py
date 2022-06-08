@@ -2,11 +2,9 @@ from itertools import count
 import time, sys
 def readfile():
   try:
-    count=0
     x=input("file:> ")
     fp=open(f"{x}", "r")
-    for xx in fp:
-      count += 1
+    for count, xx in enumerate(fp, start=1):
       if count == 300: #hmmm
         print("The file is too big to read in a short amount of time.")
         sys.exit()
@@ -52,6 +50,6 @@ def detectlanguage():
   x=input("file:> ")
   xx=x.split(".")
   try:
-    print(languages["." + xx[1]])
+    print(languages[f".{xx[1]}"])
   except:
     print("It seems like the language is not yet supported.")
